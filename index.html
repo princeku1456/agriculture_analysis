@@ -266,7 +266,7 @@ function renderProfile(){var el=$('#p-district'),n=S.sel;
   '<div class="hero"><small>'+p.base+(p.year?' · '+p.year:'')+'</small><div class="big">'+fmt(v)+' <span>'+p.unit+'</span></div>'+
   (v===null?'':'<span class="pill">Rank #'+rankOf(n)+' of '+S.vs.length+'</span><span class="pill">'+(d>=0?'▲':'▼')+' '+Math.abs(d).toFixed(0)+'% vs avg</span>'+(isAdd(S.ind)&&tot?'<span class="pill">'+(v/tot*100).toFixed(1)+'% of state</span>':''))+
   '<div class="meter" style="background:'+grad+'"><i style="left:'+avgp+'%" title="State average"></i><i class="me" style="left:'+pos+'%"></i></div><div class="mm"><span>'+fmtC(S.min)+'</span><span>▮ state avg</span><span>'+fmtC(S.max)+'</span></div></div>'+
-  '<div class="lbl" style="color:#6a7a73">At a glance · tap to map it</div><div class="stats">'+KEY.filter(function(k){return ALL.indexOf(k)>=0}).map(function(k){var q=P(k);return '<button class="st" data-i="'+k+'"><small>'+q.base+'</small><b>'+fmtC(V(n,k))+'</b><em>#'+rankOf(n,k)+'</em></button>'}).join('')+'</div>'}
+  '<div class="lbl" style="color:#6a7a73">At a glance · tap to map it</div><div class="stats">'+ALL.filter(function(k){return V(n,k)!==null}).map(function(k){return{k:k,r:rankOf(n,k)}}).sort(function(a,b){return a.r-b.r||a.k.localeCompare(b.k)}).map(function(o){var k=o.k,q=P(k);return '<button class="st" data-i="'+k.replace(/"/g,'&quot;')+'"><small>'+q.base+'</small><b>'+fmtC(V(n,k))+'</b><em>#'+o.r+'</em></button>'}).join('')+'</div>'}
 $('#p-district').onclick=function(e){if(e.target.closest('[data-x]'))return clearSel();var b=e.target.closest('.st');if(b)setInd(b.dataset.i)};
 
 /* ---- table ---- */
