@@ -327,7 +327,7 @@ $('#p-district').onclick=function(e){if(e.target.closest('[data-x]'))return clea
 $('#p-district').onchange=function(e){if(e.target.id==='cmps'&&e.target.value)addCm(e.target.value)};
 $('#p-district').oninput=function(e){if(e.target.id==='pfi'){S.pf=e.target.value;renderList()}};
 
-function setCm(arr){var old=S.cm;S.cm=arr.filter(function(x,i){return x!==S.sel&&arr.indexOf(x)===i}).slice(0,5);old.concat(S.cm).forEach(function(x){LY[x].setStyle(styleFor(x))});S.cm.forEach(function(x){LY[x].bringToFront()});if(S.sel)LY[S.sel].bringToFront();renderProfile();sync()}
+function setCm(arr){var old=S.cm;S.cm=arr.filter(function(x,i){return x!==S.sel&&arr.indexOf(x)===i}).slice(0,15);old.concat(S.cm).forEach(function(x){LY[x].setStyle(styleFor(x))});S.cm.forEach(function(x){LY[x].bringToFront()});if(S.sel)LY[S.sel].bringToFront();renderProfile();sync()}
 function toggleCm(n){setCm(S.cm.indexOf(n)<0?S.cm.concat(n):S.cm.filter(function(x){return x!==n}))}
 function addCm(n){setCm(S.cm.concat(n))}
 function sync(){try{var h=[];if(S.sel)h.push('d='+encodeURIComponent(S.sel));if(S.cm.length)h.push('c='+S.cm.map(encodeURIComponent).join(','));h.push('i='+encodeURIComponent(S.ind));history.replaceState(null,'','#'+h.join('&'))}catch(e){}}
