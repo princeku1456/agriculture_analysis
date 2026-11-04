@@ -198,6 +198,17 @@ button.kpi:hover{box-shadow:0 10px 26px rgba(0,0,0,.35)}
 .wl{all:unset;box-sizing:border-box;display:block;width:100%;padding:9px 8px;border-radius:10px;cursor:pointer;border-bottom:1px solid #eef2ee}.wl:hover{background:#eef4f0}
 .wl .a{display:flex;justify-content:space-between;font-size:13px}.wl em{font-style:normal;font-size:11px;font-weight:800;color:#a14a00;background:#fde9d3;border-radius:99px;padding:2px 8px}.wl .b{display:block;font-size:12px;line-height:1.45;color:var(--mut);margin-top:4px}.wl .b b{color:var(--txt)}
 .rgs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}.rgt{background:#f3f7f4;border-radius:12px;padding:10px 11px;min-width:0}.rgt small{display:block;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--mut)}.rgt b{display:block;font-size:18px;margin:3px 0}.rgt i{font-style:normal;font-size:11px;color:var(--mut)}
+.tools{flex-wrap:wrap;max-width:calc(100% - 32px)}
+.sr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;padding:9px 0;border-bottom:1px solid #eef2ee}.sr .i{grid-column:1/3}.sr select,.sr input{margin:0;padding:9px 26px 9px 10px;font-size:12px;border-radius:10px;border:1px solid var(--line);background-color:#f3f7f4;color:var(--txt);width:100%;min-width:0}.sr input{padding-right:10px}.sr .o{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:6px}.sr .x{border:0;background:#fbe9cf;color:#a14a00;border-radius:10px;width:34px;font-weight:800}
+.sres h4{margin:12px 0 6px;font-size:12px}.sres .wl .b{font-size:11.5px}
+#abt{position:fixed;inset:0;z-index:2000;background:rgba(5,14,10,.75);display:none;align-items:center;justify-content:center;padding:14px}#abt.show{display:flex}
+.abx{background:#fff;color:var(--txt);border-radius:20px;max-width:780px;width:100%;max-height:88vh;overflow:auto;padding:22px 24px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.abx h2{margin:0 0 4px;font-size:21px}.abx h4{margin:20px 0 6px;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--mut)}.abx p,.abx li{font-size:13px;line-height:1.55;margin:5px 0}.abx ul{padding-left:18px;margin:4px 0}.abx table{width:100%;border-collapse:collapse;font-size:12px}.abx td,.abx th{padding:6px 8px;border-bottom:1px solid #eef2ee;text-align:left;vertical-align:top}.abx .cl{float:right;border:0;background:#eef2ee;border-radius:99px;width:34px;height:34px;font-weight:800;font-size:15px}.abx .flag{background:#fff4e0;border:1px solid #f3d9a4;border-radius:10px;padding:8px 12px}
+#brief{display:none}
+@media print{@page{size:A4;margin:13mm}html,body{background:#fff!important;height:auto!important}body>*{display:none!important}body>#brief{display:block!important;color:#17282a;font:12px/1.5 'Plus Jakarta Sans',system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ #brief h1{font-size:22px;margin:0}#brief .m{color:#5b6e66;font-size:11px;margin:2px 0 12px}#brief h3{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#5b6e66;margin:14px 0 5px;border-bottom:1px solid #dfe7e2;padding-bottom:3px}
+ #brief table{width:100%;border-collapse:collapse}#brief td,#brief th{padding:4px 6px;border-bottom:1px solid #eef2ee;text-align:left;font-size:11.5px}#brief .sum{background:#0f2a22;color:#fff;border-radius:10px;padding:10px 14px;margin:8px 0}#brief .sum b{font-size:22px}
+ #brief .bar{height:7px;background:#e8eeea;border-radius:9px;position:relative;width:160px}#brief .bar i{display:block;height:100%;background:#1f8a6b;border-radius:9px}#brief .bar u{position:absolute;left:50%;top:-2px;height:11px;width:2px;background:#0c1d18}#brief .ft{margin-top:14px;font-size:10px;color:#6b7c75}}
 /* ===== mobile / tablet (<=1100px) ===== */
 #fab{display:none;position:fixed;z-index:1000;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);border:0;border-radius:99px;padding:12px 20px;background:var(--acc);color:#1d1500;font-weight:800;font-size:13px;box-shadow:0 10px 26px rgba(0,0,0,.45);white-space:nowrap}
 @media (max-width:1100px){
@@ -261,7 +272,7 @@ button.kpi:hover{box-shadow:0 10px 26px rgba(0,0,0,.35)}
     </div>
     <div class="glass tools">
       <button id="tour" title="Auto-play through districts">▶ Tour</button><button id="lab" title="Cycle map labels">Labels: Names</button>
-      <button id="share" title="Copy a link to this view">🔗 Share</button><button id="reset" title="Reset view (Esc)">⟲ Reset</button>
+      <button id="share" title="Copy a link to this view">🔗 Share</button><button id="brf" title="Print or save a one-page brief">🖨 Brief</button><button id="abtb" title="Methodology and data notes">ⓘ About</button><button id="reset" title="Reset view (Esc)">⟲ Reset</button>
     </div>
     <div class="glass title"><small>Showing</small><h2 id="ttl"></h2><div id="tags"></div></div>
   </main>
@@ -270,7 +281,7 @@ button.kpi:hover{box-shadow:0 10px 26px rgba(0,0,0,.35)}
     <div class="tabs">
       <button class="tab on" data-tab="insights">Insights</button>
       <button class="tab" data-tab="district">District</button>
-      <button class="tab" data-tab="explore">Explore</button><button class="tab" data-tab="data">Data</button>
+      <button class="tab" data-tab="explore">Explore</button><button class="tab" data-tab="screen">Screen</button><button class="tab" data-tab="data">Data</button>
     </div>
     <div class="pane" id="p-insights">
       <div class="card insight"><h3>Key takeaways</h3><div id="ins"></div></div>
@@ -288,6 +299,9 @@ button.kpi:hover{box-shadow:0 10px 26px rgba(0,0,0,.35)}
     <div class="pane" id="p-explore" hidden>
       <div class="card"><h3>Relationship explorer</h3><div class="xp" id="xp"></div><div class="xsel"><div><label>X axis</label><select id="xx"></select></div><button class="xsw" id="xsw" title="Swap axes">⇄</button><div><label>Y axis</label><select id="xy"></select></div></div><div class="ch xch"><canvas id="sc"></canvas></div><div class="xn" id="xn"></div></div>
     </div>
+    <div class="pane" id="p-screen" hidden>
+      <div class="card"><h3><span>Screen districts</span><span class="sub2">districts must match all rules</span></h3><div class="xp" id="scp"></div><div id="scr"></div><div class="tb"><button class="btn" id="sadd">＋ Add rule</button><button class="btn" id="sclr">Clear screen</button></div><div id="sres"></div></div>
+    </div>
     <div class="pane" id="p-data" hidden>
       <div class="tb"><input id="flt" placeholder="Filter districts…" aria-label="Filter"><button class="btn" id="csv">⬇ CSV</button></div>
       <table><thead><tr><th data-k="v">#</th><th data-k="n">District ⇅</th><th data-k="v" style="text-align:right">Value ⇅</th></tr></thead><tbody id="tb"></tbody></table>
@@ -295,6 +309,8 @@ button.kpi:hover{box-shadow:0 10px 26px rgba(0,0,0,.35)}
   </aside>
 </div>
 
+<div id="abt"><div class="abx" id="abx"></div></div>
+<div id="brief"></div>
 <button id="fab" aria-label="Jump between map and details"></button>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -349,7 +365,7 @@ function colorOf(v){var c=classOf(v);return c<0?'#cfd6d1':S.cols[c]}
 var map=L.map('map',{attributionControl:false,zoomControl:false,zoomSnap:.25,minZoom:6,maxZoom:11});
 L.control.zoom({position:'bottomright'}).addTo(map);
 var PD=['#F6F3CF', '#8ACE8A', '#116778', '#D6E8A1', '#3AA48F', '#0B3A45', '#94D28C', '#146F7D', '#DAE9A7', '#46AA8E', '#0C404C', '#9ED58F', '#19767F', '#DFEBAE', '#51B08E', '#0D4754', '#A7D892', '#1F7E82', '#E4EDB5', '#5CB68D', '#0D4D5B', '#B1DB94', '#248685', '#E8EEBB', '#68BC8C', '#0E5462', '#BBDF97', '#298D87', '#EDF0C2', '#73C28B', '#0F5A69', '#C4E29A', '#2F958A', '#F1F1C8', '#7EC88B', '#106171', '#CEE59C', '#349D8D'];function dcol(n){var i=names.indexOf(n);return PD[(i<0?0:i)%PD.length]}function styleFor(n){var v=V(n),dim=S.cls!==null&&classOf(v)!==S.cls,sel=n===S.sel,ci=S.cm.indexOf(n);
-  return{fillColor:colorOf(v),fillOpacity:dim?.1:.92,weight:sel?3.5:ci>=0?3:.9,color:sel?ACC:ci>=0?dcol(n):'#2b4a40',opacity:sel||ci>=0?1:.55,dashArray:ci>=0?'7 5':null}}
+  return{fillColor:colorOf(v),fillOpacity:(dim||(SCR&&SCR.indexOf(n)<0))?.1:.92,weight:sel?3.5:ci>=0?3:.9,color:sel?ACC:ci>=0?dcol(n):'#2b4a40',opacity:sel||ci>=0?1:.55,dashArray:ci>=0?'7 5':null}}
 function hc(n){var v=V(n);if(v===null)return '<div class="h1">'+n+'</div><div class="h3">No data</div>';var d=S.mean?(v-S.mean)/S.mean*100:0;
   return '<div class="h1">'+n+'</div><div class="h2">'+fmt(v)+' <small>'+P(S.ind).unit+'</small></div><div class="h3">Rank #'+rankOf(n)+' of '+S.vs.length+(S.mean?' · '+(d>=0?'▲ ':'▼ ')+Math.abs(d).toFixed(0)+'% vs avg':'')+'</div>'}
 function hoverOn(n){var l=LY[n];if(!l)return;l.setStyle({weight:2.5,color:INK,opacity:1,fillOpacity:.98});l.bringToFront();var r=document.querySelector('tr[data-d="'+n+'"]');if(r)r.classList.add('hl')}
@@ -369,7 +385,7 @@ function select(n,fly){S.sel=n;S.cm=S.cm.filter(function(x){return x!==n});names
   if(fly)map.flyToBounds(LY[n].getBounds(),{padding:[90,90],maxZoom:9,duration:.8});
   tab('district');renderProfile();renderTable();charts();sync()}
 function clearSel(){if(!S.sel)return;var o=S.sel,c0=S.cm;S.sel=null;S.cm=[];c0.forEach(function(x){LY[x].setStyle(styleFor(x))});LY[o].setStyle(styleFor(o));renderProfile();renderTable();charts();sync()}
-function tab(w){document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.tab===w)});['insights','district','explore','data'].forEach(function(k){$('#p-'+k).hidden=k!==w});if(w==='insights'||w==='explore')charts()}
+function tab(w){document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.tab===w)});['insights','district','explore','screen','data'].forEach(function(k){$('#p-'+k).hidden=k!==w});if(w==='insights'||w==='explore')charts()}
 document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){tab(t.dataset.tab)}});
 
 /* ---- indicator + chips ---- */
@@ -629,8 +645,61 @@ function region(){if($('#p-insights').hidden)return;
 function whatif(n){var pl=PIL[n],ws=pl.map(function(x,i){return[x,i]}).sort(function(a,b){return a[0]-b[0]}).slice(0,2).filter(function(a){return a[0]<50}),ix=idx(n),h='';
  if(ws.length){var up=ws.reduce(function(a,q){return a+(50-q[0])/6},0),nw=ix+up,rk=names.filter(function(m){return m!==n&&idx(m)>nw}).length+1;h+='<p class="rdn"><b>What-if:</b> lifting '+ws.map(function(q){return PN[q[1]]}).join(' and ')+' to the state median would add about <b>+'+up.toFixed(1)+'</b> points (index '+ix+' → '+nw.toFixed(1)+', rank #'+rankOf(n,IXK)+' → #'+rk+').</p>'}
  var pe=names.filter(function(m){return m!==n}).map(function(m){return[m,Math.sqrt(PIL[m].reduce(function(a,x,i){return a+(x-pl[i])*(x-pl[i])},0))]}).sort(function(a,b){return a[0]===b[0]?0:a[1]-b[1]}).slice(0,3);
- return h+'<p class="rdn">Most similar profile: '+pe.map(function(q){return '<button class="lk" data-peer="'+q[0]+'">'+q[0]+'</button>'}).join('')+' <span style="font-size:11px">tap to overlay on the radar</span></p>'}
+ return h+'<p class="rdn">Most similar profile: '+pe.map(function(q){return '<button class="lk" data-peer="'+q[0]+'">'+q[0]+'</button>'}).join('')+' <span style="font-size:11px">tap to overlay on the radar</span></p><p class="rdn"><button class="lk" data-brief="1">🖨 Print / save district brief</button></p>'}
 $('#p-district').addEventListener('click',function(e){var b=e.target.closest('[data-peer]');if(b)addCm(b.dataset.peer)});
+
+/* officers' toolkit: screening, brief, about */
+var SCR=null,RULES=[],OPTS='',SOP=[['q4','is in the top quartile'],['q1','is in the bottom quartile'],['ab','is above state average'],['be','is below state average'],['ge','is at least…'],['le','is at most…']];
+(function(){var og={};ALL.forEach(function(k){(og[catOf(k)]=og[catOf(k)]||[]).push(k)});OPTS=Object.keys(og).map(function(g){return '<optgroup label="'+g+'">'+og[g].map(function(k){return '<option>'+k+'</option>'}).join('')+'</optgroup>'}).join('')})();
+var PRS=[['💧 Water-stressed',[['Groundwater Extraction Stage (%)','ge',70]]],['🌾 Low yield + low irrigation',[['Foodgrain Productivity (MT/ha)','be'],['Irrigation Coverage (% of Cropland)','be']]],['🧑‍🔧 Stretched extension',[['Farmers per Officer','q4']]],['🥦 Diversify: low horticulture, good irrigation',[['Horticulture Share (% of GCA)','q1'],['Irrigation Coverage (% of Cropland)','ab']]],['🏆 Index leaders',[['Agri Performance Index (0-100)','q4']]]];
+$('#scp').innerHTML=PRS.map(function(p,i){return '<button class="pc2" data-p="'+i+'">'+p[0]+'</button>'}).join('');
+function rulesUI(){$('#scr').innerHTML=RULES.map(function(r,i){return '<div class="sr" data-i="'+i+'"><select class="i" data-f="k">'+OPTS+'</select><div class="o"><select data-f="o">'+SOP.map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>'}).join('')+'</select><input data-f="v" type="number" step="any" placeholder="value"'+(r.o==='ge'||r.o==='le'?'':' hidden')+'></div><button class="x" data-x="'+i+'" title="Remove rule">✕</button></div>'}).join('');
+ document.querySelectorAll('#scr .sr').forEach(function(el,i){var r=RULES[i];el.querySelector('[data-f=k]').value=r.k;el.querySelector('[data-f=o]').value=r.o;el.querySelector('[data-f=v]').value=r.v===undefined?'':r.v})}
+function screenRun(){var rs=RULES.filter(function(r){return r.k}),res=null;
+ if(rs.length){res=names.filter(function(n){return rs.every(function(r){var v=V(n,r.k);if(v===null)return false;var a=valsOf(r.k).slice().sort(function(x,y){return x-y}),m=sumA(a)/a.length,t=r.v===''||r.v===undefined||isNaN(+r.v)?null:+r.v;
+  switch(r.o){case'q4':return v>=qn(a,.75);case'q1':return v<=qn(a,.25);case'ab':return v>m;case'be':return v<m;case'ge':return t===null||v>=t;case'le':return t===null||v<=t}return true})})}
+ SCR=res;names.forEach(function(k){LY[k].setStyle(styleFor(k))});if(S.sel&&LY[S.sel])LY[S.sel].bringToFront();
+ var h='';if(res){h='<div class="sres"><h4>'+res.length+' of '+names.length+' districts match'+(res.length?' (shown on the map, others dimmed)':'')+'</h4>'+res.sort(function(a,b){return idx(a)-idx(b)}).map(function(n){return '<button class="wl" data-d="'+n+'"><span class="a"><b>'+n+'</b><em>Index '+idx(n)+'</em></span><span class="b">'+rs.map(function(r){return P(r.k).base+': <b>'+fmtV(V(n,r.k))+'</b>'}).join(' · ')+'</span></button>'}).join('')+'</div>'}
+ $('#sres').innerHTML=h}
+function rulesSet(a){RULES=a.map(function(x){return{k:x[0],o:x[1],v:x[2]}});rulesUI();screenRun()}
+$('#scp').onclick=function(e){var b=e.target.closest('[data-p]');if(b)rulesSet(PRS[b.dataset.p][1])};
+$('#sadd').onclick=function(){RULES.push({k:ALL[0],o:'q4'});rulesUI();screenRun()};
+$('#sclr').onclick=function(){RULES=[];SCR=null;rulesUI();screenRun()};
+$('#scr').addEventListener('change',function(e){var el=e.target.closest('.sr'),f=e.target.dataset.f;if(!el||!f)return;var r=RULES[el.dataset.i];r[f]=e.target.value;if(f==='o'){rulesUI()}screenRun()});
+$('#scr').addEventListener('input',function(e){if(e.target.dataset.f!=='v')return;RULES[e.target.closest('.sr').dataset.i].v=e.target.value;screenRun()});
+$('#scr').addEventListener('click',function(e){var x=e.target.closest('[data-x]');if(x){RULES.splice(+x.dataset.x,1);rulesUI();screenRun()}});
+$('#sres').onclick=function(e){var b=e.target.closest('.wl');if(b)select(b.dataset.d,true)};
+rulesSet(PRS[1][1]);SCR=null;names.forEach(function(k){LY[k].setStyle(styleFor(k))});$('#sres').innerHTML='';
+
+/* printable brief */
+function brief(n){var d=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),F=function(x,p){return (Math.abs(x)>=1000?fmtC(x):fmt(x))+p[3]},h='<h1>'+(n?n+' district brief':'Bihar state brief')+'</h1><div class="m">Bihar Agricultural Atlas · generated '+d+' · Source: BIPARD; boundaries: DataMeet (Census 2011)</div>';
+ var kr=RV.map(function(r){var has=n&&r.v[n]!==undefined,v=has?r.v[n]:r.st,bs=r.inv?r.so[0]:r.so[r.so.length-1],rk=has?(r.so.filter(function(x){return r.inv?r.v[x]<v:r.v[x]>v}).length+1)+' / '+r.so.length:'';return '<tr><td>'+P(r.k).base+'</td><td><b>'+fmtV(v)+'</b> '+P(r.k).unit+'</td><td>'+fmtV(r.st)+'</td><td>'+(n?rk:bs+' ('+fmtV(r.v[bs])+')')+'</td></tr>'}).join('');
+ var kt='<h3>Headline indicators</h3><table><tr><th>Indicator</th><th>'+(n?n:'State')+'</th><th>State</th><th>'+(n?'Rank (1 = best)':'Best district')+'</th></tr>'+kr+'</table>';
+ if(n){var pl=PIL[n],j0=pl.indexOf(Math.min.apply(null,pl)),j1=pl.indexOf(Math.max.apply(null,pl)),ix=idx(n),avg=sumA(names.map(idx))/names.length;
+  h+='<div class="sum"><b>'+ix+'</b> Agri Performance Index · rank <b>'+rankOf(n,IXK)+'</b> of '+names.length+' · '+(ix>=avg?'above':'below')+' the state average ('+avg.toFixed(1)+')<br>Strongest pillar: '+PN[j1]+' · Weakest pillar: '+PN[j0]+'</div>';
+  h+='<h3>Performance pillars (percentile score, 50 = state median)</h3><table>'+PKM.map(function(p,j){var rv=RV.filter(function(r){return r.k===p[1]})[0],vs=valsOf(p[1]);return '<tr><td>'+p[0]+'</td><td>'+F(V(n,p[1]),p)+'</td><td>state '+F(rv?rv.st:sumA(vs)/vs.length,p)+'</td><td><div class="bar"><i style="width:'+pl[j].toFixed(0)+'%"></i><u></u></div></td><td>'+Math.round(pl[j])+'</td></tr>'}).join('')+'</table>'+kt;
+  var zs=ALL.filter(function(k){return !isAdd(k)&&V(n,k)!==null}).map(function(k){var a=valsOf(k),m=sumA(a)/a.length,sd=Math.sqrt(sumA(a.map(function(x){return (x-m)*(x-m)}))/(a.length-1));return[k,sd?(V(n,k)-m)/sd:0,m]}).sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1])}).slice(0,6);
+  h+='<h3>Where this district stands out (vs state average)</h3><table>'+zs.map(function(z){return '<tr><td>'+z[0]+'</td><td><b>'+fmtV(V(n,z[0]))+'</b></td><td>state '+fmtV(z[2])+'</td><td>'+(z[1]>0?'▲':'▼')+' '+Math.abs(z[1]).toFixed(1)+' std dev</td></tr>'}).join('')+'</table>';
+  var ws=pl.map(function(x,i){return[x,i]}).sort(function(a,b){return a[0]-b[0]}).slice(0,2).filter(function(a){return a[0]<50});
+  if(ws.length){var up=ws.reduce(function(a,q){return a+(50-q[0])/6},0);h+='<h3>Where to focus</h3><p>Raising <b>'+ws.map(function(q){return PN[q[1]]}).join(' and ')+'</b> to the state median would add about <b>+'+up.toFixed(1)+'</b> index points ('+ix+' to '+(ix+up).toFixed(1)+').</p>'}}
+ else{h+=kt+'<h3>Index leaders</h3><table>'+names.slice().sort(function(a,b){return idx(b)-idx(a)}).slice(0,5).map(function(x){return '<tr><td>'+x+'</td><td>'+idx(x)+'</td></tr>'}).join('')+'</table><h3>Priority districts (lowest index)</h3><table>'+names.slice().sort(function(a,b){return idx(a)-idx(b)}).slice(0,5).map(function(x){var pl=PIL[x],j=pl.indexOf(Math.min.apply(null,pl));return '<tr><td>'+x+'</td><td>'+idx(x)+'</td><td>weakest: '+PN[j]+'</td></tr>'}).join('')+'</table>'}
+ h+='<div class="ft">Index = equal-weight average of six pillar percentiles. Data years vary by indicator (2012–2024). Percentile scores are relative to the other 37 districts, not absolute targets. See About in the Atlas for full methodology and data caveats.</div>';
+ $('#brief').innerHTML=h;setTimeout(function(){try{window.print()}catch(e){}},200)}
+$('#brf').onclick=function(){brief(S.sel)};
+
+/* about / methodology */
+function about(){var inc=ALL.map(function(k){return[k,valsOf(k).length]}).filter(function(a){return a[1]<names.length}).sort(function(a,b){return a[1]-b[1]});
+ $('#abx').innerHTML='<button class="cl" id="abc" aria-label="Close">✕</button><h2>About this atlas</h2><p>District-level agriculture indicators for Bihar ('+names.length+' districts, '+ALL.length+' indicators), built for review meetings and planning. Source: BIPARD; boundaries: DataMeet (Census 2011).</p>'+
+ '<h4>Agri Performance Index (0–100)</h4><p>Each district gets a percentile score (0–100) on six pillars versus the other districts; the index is their simple average. It shows relative standing, not distance from a target.</p><table><tr><th>Pillar</th><th>Indicator</th><th>Better when</th></tr>'+PKM.map(function(p){return '<tr><td>'+p[0]+'</td><td>'+p[1]+'</td><td>'+(p[2]>0?'higher':'lower')+'</td></tr>'}).join('')+'</table>'+
+ '<h4>Derived indicators</h4><ul><li><b>Foodgrain productivity</b> = (rice + wheat + maize production) ÷ (their area).</li><li><b>Irrigation coverage</b> = net irrigated area ÷ net sown area.</li><li><b>Yields</b> are shown only where crop area is at least 500 ha.</li><li><b>Fallow, tubewell, horticulture and female-DBT shares</b> are simple ratios of the stated components.</li><li>State figures for ratios are weighted (total numerator ÷ total denominator), not averages of district values.</li></ul>'+
+ '<h4>Reading the statistics</h4><ul><li><b>Skew</b>: above +0.5 or below −0.5 means a lopsided spread; the mean is pulled toward the long tail.</li><li><b>CV</b> = std dev ÷ mean. <b>Gini</b>: 0 = perfectly even, 1 = one district holds everything.</li><li><b>Correlation (r)</b> shows districts that move together; it does not prove cause. Bold cells use |r| ≥ 0.32 (p &lt; 0.05 for 38 districts).</li><li><b>North / South of the Ganga</b> grouping is by district location (21 north, 17 south).</li></ul>'+
+ '<h4>Data handling and cautions</h4><div class="flag"><ul><li>Net Sown Area (% of Geo Area) was recalculated from area figures because the source column had impossible values (above 100%).</li><li>Zeros in KCC loans, MSME units, GVA, GSDP, fertilizer use and mechanization were treated as <b>missing</b>.</li><li>Indicators identical in every district (for example combine harvesters) are hidden.</li><li>Indicator years differ (2012 to 2024), so cross-indicator comparisons mix periods.</li><li>Check at source: Araria maize yield (about 9.9 MT/ha) and very small GVA/GSDP values in some districts look like possible entry or unit errors.</li></ul></div>'+
+ (inc.length?'<h4>Indicators with incomplete coverage ('+inc.length+')</h4><p>'+inc.slice(0,14).map(function(a){return a[0]+' ('+a[1]+'/'+names.length+')'}).join('; ')+(inc.length>14?'; …':'')+'</p>':'')}
+function aboutOpen(o){if(o)about();$('#abt').classList.toggle('show',o)}
+$('#abtb').onclick=function(){aboutOpen(true)};
+$('#abt').onclick=function(e){if(e.target.id==='abt'||e.target.closest('#abc'))aboutOpen(false)};
+addEventListener('keydown',function(e){if(e.key==='Escape')aboutOpen(false)});
+$('#p-district').addEventListener('click',function(e){if(e.target.closest('[data-brief]'))brief(S.sel)});
 /* guided tour */
 var tr=null;
 function stopTour(){if(tr){clearInterval(tr);tr=null;$('#tour').textContent='▶ Tour'}}
