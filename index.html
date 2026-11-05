@@ -1,86 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="theme-color" content="#0c1d18">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bihar Agricultural Atlas</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🌾%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="app">
-  <aside class="rail">
-    <div class="brand"><div class="logo">🌾</div><div><h1>Bihar <span>Agricultural Atlas</span></h1><p>38 districts · Census 2011 boundaries</p></div></div>
-    <div>
-      <div class="lbl">Explore by theme</div>
-      <div class="chips" id="chips"></div>
-      <input class="isr" id="isr" type="search" placeholder="Search indicators…" aria-label="Search indicators" autocomplete="off"><select id="indicator" aria-label="Indicator"></select>
-    </div>
-    <div class="kpis" id="kpis"></div>
-    <div>
-      <div class="lbl">Legend · click a class to isolate it</div>
-      <div id="legend"></div>
-    </div>
-    <div class="foot">WGS84 · Source: DataMeet dists11 · Data: BIPARD</div>
-  </aside>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#0c1d18" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Bihar Agricultural Atlas</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🌾%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="rail">
+        <div class="brand">
+          <div class="logo">🌾</div>
+          <div>
+            <h1>Bihar <span>Agricultural Atlas</span></h1>
+            <p>38 districts · Census 2011 boundaries</p>
+          </div>
+        </div>
+        <div>
+          <div class="lbl">Explore by theme</div>
+          <div class="chips" id="chips"></div>
+          <input
+            class="isr"
+            id="isr"
+            type="search"
+            placeholder="Search indicators…"
+            aria-label="Search indicators"
+            autocomplete="off"
+          /><select id="indicator" aria-label="Indicator"></select>
+        </div>
+        <div class="kpis" id="kpis"></div>
+        <div>
+          <div class="lbl">Legend · click a class to isolate it</div>
+          <div id="legend"></div>
+        </div>
+        <div class="foot">WGS84 · Source: DataMeet dists11 · Data: BIPARD</div>
+      </aside>
 
-  <main class="stage">
-    <div id="map"></div>
-    <div class="glass search">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="q" type="text" placeholder="Find a district…" autocomplete="off" aria-label="Search district"><kbd>/</kbd>
-      <div id="sg" hidden></div>
-    </div>
-    <div class="glass tools">
-      <button id="tour" title="Auto-play through districts">▶ Tour</button><button id="lab" title="Cycle map labels">Labels: Names</button>
-      <button id="share" title="Copy a link to this view">🔗 Share</button><button id="brf" title="Print or save a one-page brief">🖨 Brief</button><button id="abtb" title="Methodology and data notes">ⓘ About</button><button id="reset" title="Reset view (Esc)">⟲ Reset</button>
-    </div>
-    <div class="glass title"><small>Showing</small><h2 id="ttl"></h2><div id="tags"></div></div>
-  </main>
+      <main class="stage">
+        <div id="map"></div>
+        <div class="glass search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" />
+          </svg>
+          <input
+            id="q"
+            type="text"
+            placeholder="Find a district…"
+            autocomplete="off"
+            aria-label="Search district"
+          /><kbd>/</kbd>
+          <div id="sg" hidden></div>
+        </div>
+        <div class="glass tools">
+          <button id="tour" title="Auto-play through districts">▶ Tour</button
+          ><button id="lab" title="Cycle map labels">Labels: Names</button>
+          <button id="share" title="Copy a link to this view">🔗 Share</button
+          ><button id="brf" title="Print or save a one-page brief">
+            🖨 Brief</button
+          ><button id="abtb" title="Methodology and data notes">ⓘ About</button
+          ><button id="reset" title="Reset view (Esc)">⟲ Reset</button>
+        </div>
+        <div class="glass title">
+          <small>Showing</small>
+          <h2 id="ttl"></h2>
+          <div id="tags"></div>
+        </div>
+      </main>
 
-  <aside class="side">
-    <div class="tabs">
-      <button class="tab on" data-tab="insights">Insights</button>
-      <button class="tab" data-tab="district">District</button>
-      <button class="tab" data-tab="explore">Explore</button><button class="tab" data-tab="screen">Screen</button><button class="tab" data-tab="data">Data</button>
+      <aside class="side">
+        <div class="tabs">
+          <button class="tab on" data-tab="insights">Insights</button>
+          <button class="tab" data-tab="district">District</button>
+          <button class="tab" data-tab="explore">Explore</button
+          ><button class="tab" data-tab="screen">Screen</button
+          ><button class="tab" data-tab="data">Data</button>
+        </div>
+        <div class="pane" id="p-insights">
+          <div class="card insight">
+            <h3>Key takeaways</h3>
+            <div id="ins"></div>
+          </div>
+          <div class="card">
+            <h3>
+              <span>Statistical profile</span
+              ><span
+                class="sk sym"
+                id="kn"
+                style="
+                  max-width: 55%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                "
+              ></span>
+            </h3>
+            <div class="kts" id="kts"></div>
+          </div>
+          <div class="card">
+            <h3><span>What moves with this</span></h3>
+            <div id="rx"></div>
+            <p class="hint2" id="rxn"></p>
+          </div>
+          <div class="card">
+            <h3>
+              <span>Pillar scoreboard</span
+              ><span class="sub2">biggest headroom first</span>
+            </h3>
+            <div id="psb"></div>
+            <p class="hint2">
+              Marker = where the state sits between the weakest and best
+              district. Tap a district to open it.
+            </p>
+          </div>
+          <div class="card">
+            <h3>
+              <span>Priority districts</span
+              ><span class="sub2">lowest 5 on the index</span>
+            </h3>
+            <div id="pri"></div>
+          </div>
+          <div class="card">
+            <h3><span>North vs South of the Ganga</span></h3>
+            <div class="rgs" id="rgs"></div>
+            <div class="ch" style="height: 230px">
+              <canvas id="reg"></canvas>
+            </div>
+            <p class="hint2" id="rgn"></p>
+          </div>
+          <div class="card">
+            <h3>
+              <span
+                >Crop mix &amp; irrigation ·
+                <i id="cmt" style="font-style: normal; color: var(--g)"
+                  >Bihar</i
+                ></span
+              >
+            </h3>
+            <div class="duo">
+              <div class="ch dnc"><canvas id="cmix"></canvas></div>
+              <div class="ch dnc"><canvas id="cirr"></canvas></div>
+            </div>
+            <p class="hint2">
+              Click a slice to map it · select a district to see its own mix
+            </p>
+          </div>
+          <div class="card">
+            <h3>
+              <span>Distribution &amp; skew</span
+              ><span class="sk" id="sk"></span>
+            </h3>
+            <div class="ch"><canvas id="hist"></canvas></div>
+            <div class="skn" id="skn"></div>
+          </div>
+          <div class="card">
+            <h3>
+              <span>Ranking</span
+              ><span class="seg" id="seg"
+                ><button class="on" data-m="top">Top 10</button
+                ><button data-m="bottom">Bottom 10</button></span
+              >
+            </h3>
+            <div class="ch tall"><canvas id="top"></canvas></div>
+          </div>
+          <div class="card">
+            <h3>
+              <span>Correlation matrix</span><span class="sub2">Pearson r</span>
+            </h3>
+            <div class="cmw"><table class="cx" id="cx"></table></div>
+            <p class="hint2">
+              Tap a cell to plot that pair in Explore · bold = statistically
+              significant (|r| ≥ 0.32, p &lt; 0.05) · teal = move together,
+              orange = move opposite
+            </p>
+          </div>
+        </div>
+        <div class="pane" id="p-district" hidden></div>
+        <div class="pane" id="p-explore" hidden>
+          <div class="card">
+            <h3>Relationship explorer</h3>
+            <div class="xp" id="xp"></div>
+            <div class="xsel">
+              <div>
+                <label>X axis</label
+                ><select id="xx"></select>
+              </div>
+              <button class="xsw" id="xsw" title="Swap axes">⇄</button>
+              <div>
+                <label>Y axis</label
+                ><select id="xy"></select>
+              </div>
+            </div>
+            <div class="ch xch"><canvas id="sc"></canvas></div>
+            <div class="xn" id="xn"></div>
+          </div>
+        </div>
+        <div class="pane" id="p-screen" hidden>
+          <div class="card">
+            <h3>
+              <span>Screen districts</span
+              ><span class="sub2">districts must match all rules</span>
+            </h3>
+            <div class="xp" id="scp"></div>
+            <div id="scr"></div>
+            <div class="tb">
+              <button class="btn" id="sadd">＋ Add rule</button
+              ><button class="btn" id="sclr">Clear screen</button>
+            </div>
+            <div id="sres"></div>
+          </div>
+        </div>
+        <div class="pane" id="p-data" hidden>
+          <div class="tb">
+            <input
+              id="flt"
+              placeholder="Filter districts…"
+              aria-label="Filter"
+            /><button class="btn" id="csv">⬇ CSV</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th data-k="v">#</th>
+                <th data-k="n">District ⇅</th>
+                <th data-k="v" style="text-align: right">Value ⇅</th>
+              </tr>
+            </thead>
+            <tbody id="tb"></tbody>
+          </table>
+        </div>
+      </aside>
     </div>
-    <div class="pane" id="p-insights">
-      <div class="card insight"><h3>Key takeaways</h3><div id="ins"></div></div>
-      <div class="card"><h3><span>Statistical profile</span><span class="sk sym" id="kn" style="max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span></h3><div class="kts" id="kts"></div></div>
-      <div class="card"><h3><span>What moves with this</span></h3><div id="rx"></div><p class="hint2" id="rxn"></p></div>
-      <div class="card"><h3><span>Pillar scoreboard</span><span class="sub2">biggest headroom first</span></h3><div id="psb"></div><p class="hint2">Marker = where the state sits between the weakest and best district. Tap a district to open it.</p></div>
-      <div class="card"><h3><span>Priority districts</span><span class="sub2">lowest 5 on the index</span></h3><div id="pri"></div></div>
-      <div class="card"><h3><span>North vs South of the Ganga</span></h3><div class="rgs" id="rgs"></div><div class="ch" style="height:230px"><canvas id="reg"></canvas></div><p class="hint2" id="rgn"></p></div>
-      <div class="card"><h3><span>Crop mix &amp; irrigation · <i id="cmt" style="font-style:normal;color:var(--g)">Bihar</i></span></h3><div class="duo"><div class="ch dnc"><canvas id="cmix"></canvas></div><div class="ch dnc"><canvas id="cirr"></canvas></div></div><p class="hint2">Click a slice to map it · select a district to see its own mix</p></div>
-      <div class="card"><h3><span>Distribution &amp; skew</span><span class="sk" id="sk"></span></h3><div class="ch"><canvas id="hist"></canvas></div><div class="skn" id="skn"></div></div>
-      <div class="card"><h3><span>Ranking</span><span class="seg" id="seg"><button class="on" data-m="top">Top 10</button><button data-m="bottom">Bottom 10</button></span></h3><div class="ch tall"><canvas id="top"></canvas></div></div>
-      <div class="card"><h3><span>Correlation matrix</span><span class="sub2">Pearson r</span></h3><div class="cmw"><table class="cx" id="cx"></table></div><p class="hint2">Tap a cell to plot that pair in Explore · bold = statistically significant (|r| ≥ 0.32, p &lt; 0.05) · teal = move together, orange = move opposite</p></div>
-    </div>
-    <div class="pane" id="p-district" hidden></div>
-    <div class="pane" id="p-explore" hidden>
-      <div class="card"><h3>Relationship explorer</h3><div class="xp" id="xp"></div><div class="xsel"><div><label>X axis</label><select id="xx"></select></div><button class="xsw" id="xsw" title="Swap axes">⇄</button><div><label>Y axis</label><select id="xy"></select></div></div><div class="ch xch"><canvas id="sc"></canvas></div><div class="xn" id="xn"></div></div>
-    </div>
-    <div class="pane" id="p-screen" hidden>
-      <div class="card"><h3><span>Screen districts</span><span class="sub2">districts must match all rules</span></h3><div class="xp" id="scp"></div><div id="scr"></div><div class="tb"><button class="btn" id="sadd">＋ Add rule</button><button class="btn" id="sclr">Clear screen</button></div><div id="sres"></div></div>
-    </div>
-    <div class="pane" id="p-data" hidden>
-      <div class="tb"><input id="flt" placeholder="Filter districts…" aria-label="Filter"><button class="btn" id="csv">⬇ CSV</button></div>
-      <table><thead><tr><th data-k="v">#</th><th data-k="n">District ⇅</th><th data-k="v" style="text-align:right">Value ⇅</th></tr></thead><tbody id="tb"></tbody></table>
-    </div>
-  </aside>
-</div>
 
-<div id="abt"><div class="abx" id="abx"></div></div>
-<div id="brief"></div>
-<button id="fab" aria-label="Jump between map and details"></button>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="data/geo.js"></script>
-<script src="data/districts.js"></script>
-<script src="js/app.js"></script>
-</body>
+    <div id="abt"><div class="abx" id="abx"></div></div>
+    <div id="brief"></div>
+    <button id="fab" aria-label="Jump between map and details"></button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="data/geo.js"></script>
+    <script src="data/districts.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
