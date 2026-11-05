@@ -520,12 +520,12 @@
   function open() {
     if (!dlg) build();
     opt.lab = S.lab;                       // start from the map's current Labels setting
-    dlg.classList.add('show');
+    dlg.hidden = false; dlg.classList.add('show');
     refresh();
     var c = $('#exc'); if (c) c.focus();
   }
 
-  function close() { if (dlg) dlg.classList.remove('show'); token++; }
+  function close() { if (dlg) { dlg.classList.remove('show'); dlg.hidden = true; } token++; }
 
   // Escape closes the dialog without triggering the map's own "reset view" shortcut.
   document.addEventListener('keydown', function (e) {
