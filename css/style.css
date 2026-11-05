@@ -2027,6 +2027,126 @@ button.kpi:hover {
     color: #6b7c75;
   }
 }
+/* ===== map export dialog ===== */
+#exp {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(5, 14, 10, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+#exp.show {
+  display: flex;
+}
+.exx {
+  background: #fff;
+  color: var(--txt);
+  border-radius: 20px;
+  max-width: 980px;
+  width: 100%;
+  max-height: 92vh;
+  overflow: auto;
+  padding: 20px 22px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+.exx h2 {
+  margin: 0 0 2px;
+  font-size: 21px;
+}
+.exx .cl {
+  float: right;
+  border: 0;
+  background: #eef2ee;
+  border-radius: 99px;
+  width: 34px;
+  height: 34px;
+  font-weight: 800;
+  font-size: 15px;
+}
+.exx .cl:hover {
+  background: #e0e8e2;
+}
+.exs {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--mut);
+  line-height: 1.5;
+}
+.exp {
+  position: relative;
+  background: #f1f5f2;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 120px;
+}
+.exp canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.exp.busy canvas {
+  opacity: 0.45;
+}
+.exld {
+  padding: 50px 20px;
+  text-align: center;
+  color: var(--mut);
+  font-size: 13px;
+}
+.exo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin: 14px 0 4px;
+}
+.exo label {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--mut);
+  margin-bottom: 5px;
+}
+.exo .seg button {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+.exf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--mut);
+}
+.btn.pri {
+  background: var(--acc);
+  border-color: transparent;
+  color: #1d1500;
+  padding: 10px 20px;
+  font-size: 13px;
+}
+.btn.pri:hover {
+  background: #f0b93a;
+}
+.btn.pri:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.exerr {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #fde9d3;
+  color: #a14a00;
+  font-size: 12.5px;
+}
 /* ===== mobile / tablet (<=1100px) ===== */
 #fab {
   display: none;
@@ -2226,5 +2346,18 @@ button.kpi:hover {
   }
   .tb input {
     flex: 1 1 100%;
+  }
+}
+@media (max-width: 560px) {
+  .exx {
+    padding: 16px 14px;
+  }
+  .exf {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .exf .btn {
+    width: 100%;
   }
 }
